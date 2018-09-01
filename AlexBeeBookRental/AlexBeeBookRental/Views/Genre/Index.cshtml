@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AlexBeeBookRental.Models.Genre>
+@using AlexBeeBookRental.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.Partial("_CreateButtonPartial")
+
+<br />
+<br />
+
+
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
+        <th>
+            @Html.DisplayNameFor(m => m.Name)
+        </th>
+        <th></th>
+        <th>
+            EDIT
+        </th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m=>item.Name)
+            </td>
+            <td>
+                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { GenreId = item.Id})
+            </td>
+        </tr>
+    }
+</table>

@@ -208,24 +208,66 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Extensions\DateRangeAttribute.cs" />
+    <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808301222510_DbSetUpBookAndGenreCreate.cs" />
+    <Compile Include="Migrations\201808301222510_DbSetUpBookAndGenreCreate.Designer.cs">
+      <DependentUpon>201808301222510_DbSetUpBookAndGenreCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808311239226_PublisherFieldAddedToBookClass.cs" />
+    <Compile Include="Migrations\201808311239226_PublisherFieldAddedToBookClass.Designer.cs">
+      <DependentUpon>201808311239226_PublisherFieldAddedToBookClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809010839402_MembershipTypesModelCreated.cs" />
+    <Compile Include="Migrations\201809010839402_MembershipTypesModelCreated.Designer.cs">
+      <DependentUpon>201809010839402_MembershipTypesModelCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809010840520_SeedMembershipTypes.cs" />
+    <Compile Include="Migrations\201809010840520_SeedMembershipTypes.Designer.cs">
+      <DependentUpon>201809010840520_SeedMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809010927081_ExtraFieldsToUsersTable.cs" />
+    <Compile Include="Migrations\201809010927081_ExtraFieldsToUsersTable.Designer.cs">
+      <DependentUpon>201809010927081_ExtraFieldsToUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809011159287_TestMigrationSomeBugs.cs" />
+    <Compile Include="Migrations\201809011159287_TestMigrationSomeBugs.Designer.cs">
+      <DependentUpon>201809011159287_TestMigrationSomeBugs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\SD.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\fortune.png" />
+    <Content Include="Content\Images\GiantBook.png" />
+    <Content Include="Content\Images\jungle.jpg" />
+    <Content Include="Content\Images\Spider.png" />
+    <Content Include="Content\Images\Sunset.png" />
+    <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -282,10 +324,31 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\Book\Delete.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\MembershipType\Create.cshtml" />
+    <Content Include="Views\MembershipType\Delete.cshtml" />
+    <Content Include="Views\MembershipType\Details.cshtml" />
+    <Content Include="Views\MembershipType\Edit.cshtml" />
+    <Content Include="Views\MembershipType\Index.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -299,6 +362,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808301222510_DbSetUpBookAndGenreCreate.resx">
+      <DependentUpon>201808301222510_DbSetUpBookAndGenreCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808311239226_PublisherFieldAddedToBookClass.resx">
+      <DependentUpon>201808311239226_PublisherFieldAddedToBookClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809010839402_MembershipTypesModelCreated.resx">
+      <DependentUpon>201809010839402_MembershipTypesModelCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809010840520_SeedMembershipTypes.resx">
+      <DependentUpon>201809010840520_SeedMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809010927081_ExtraFieldsToUsersTable.resx">
+      <DependentUpon>201809010927081_ExtraFieldsToUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809011159287_TestMigrationSomeBugs.resx">
+      <DependentUpon>201809011159287_TestMigrationSomeBugs.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

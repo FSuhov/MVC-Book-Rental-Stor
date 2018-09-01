@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AlexBeeBookRental.Models.Book>
+@using AlexBeeBookRental.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Manage Books</h3>
+
+<p>
+    @Html.Partial("_CreateButtonPartial")
+</p>
+<br />
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inventory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre.Name)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inventory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre.Name)
+        </td>
+        <td>
+            @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { BookId = item.Id })
+
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
