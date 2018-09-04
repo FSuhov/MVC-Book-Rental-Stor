@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AlexBeeBookRental.Models;
+using AlexBeeBookRental.Utilities;
 
 namespace AlexBeeBookRental.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class MembershipTypeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

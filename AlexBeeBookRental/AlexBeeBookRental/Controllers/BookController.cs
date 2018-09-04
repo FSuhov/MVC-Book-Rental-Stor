@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using AlexBeeBookRental.Models;
 using AlexBeeBookRental.ViewModels;
+using AlexBeeBookRental.Utilities;
 
 namespace AlexBeeBookRental.Controllers
 {
+    [Authorize(Roles =SD.AdminUserRole)]
     public class BookController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

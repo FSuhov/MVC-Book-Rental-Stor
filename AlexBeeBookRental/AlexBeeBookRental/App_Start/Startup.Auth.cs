@@ -54,15 +54,15 @@ namespace AlexBeeBookRental
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "293374304779880",
+               appSecret: "819042072fc6f053b466ba3ec7ae10da");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "537253441415-380me5uh4luuqggili7ebp12oldvd5ad.apps.googleusercontent.com",
+                ClientSecret = "WRvhvdNyqm9xdAVkobcu3PBn"
+            });
         }
     }
 }

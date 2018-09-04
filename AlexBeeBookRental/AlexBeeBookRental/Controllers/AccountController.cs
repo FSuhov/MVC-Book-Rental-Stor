@@ -145,7 +145,7 @@ namespace AlexBeeBookRental.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
-                    MembershipTypes = db.MembershipTypes.ToList(),
+                    MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
                     BirthDate = DateTime.Now
                 };
                 return View(newUser);
@@ -382,7 +382,16 @@ namespace AlexBeeBookRental.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                        {
+                            Email = loginInfo.Email,
+                            BirthDate=DateTime.Now,
+                            MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList()
+                        });
+                    }
             }
         }
 
@@ -406,7 +415,22 @@ namespace AlexBeeBookRental.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                var name = info.ExternalIdentity.Name.Split(' ');
+                var firstname = name[0].ToString();
+                var lastname = name[1].ToString();
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = firstname,
+                    LastName = lastname,
+                    BirthDate = model.BirthDate, 
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disabled = false
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
