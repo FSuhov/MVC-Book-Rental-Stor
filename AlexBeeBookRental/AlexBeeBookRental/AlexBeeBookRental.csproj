@@ -307,9 +307,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\asp.jpg" />
+    <Content Include="Content\Images\csharpnetcore.jpg" />
+    <Content Include="Content\Images\csharpnetplatform.jpg" />
+    <Content Include="Content\Images\cplusplusstaustrup.jpg" />
+    <Content Include="Content\Images\cleancode.jpg" />
     <Content Include="Content\Images\fortune.png" />
     <Content Include="Content\Images\GiantBook.png" />
+    <Content Include="Content\Images\java.jpg" />
+    <Content Include="Content\Images\javascript.jpg" />
     <Content Include="Content\Images\jungle.jpg" />
+    <Content Include="Content\Images\patterns.jpg" />
     <Content Include="Content\Images\Spider.png" />
     <Content Include="Content\Images\Sunset.png" />
     <Content Include="Content\PagedList.css" />
