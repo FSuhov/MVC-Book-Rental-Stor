@@ -1,6 +1,6 @@
 # MVC-Book-Rental-Store
 ASP .NET project using MVC pattern.
-This prject has been completed following up Complete ASP.NET MVC course in C# by Bhrugen Patel at Udemy.com with some customization.
+This project has been completed following up "Complete ASP.NET MVC course in C#" by Bhrugen Patel at Udemy.com with some customization.
 The goal of project was to create a full-featered web-application of Book Library, who offers to users the opportunity to rent a book.
 
 The project utilizes:
